@@ -24,4 +24,9 @@ export class WebhookSiteClient {
   async deleteToken(tokenId) {
     await this.http.delete(`/token/${tokenId}`);
   }
+
+  async publishEvent(tokenId, eventBody) {
+    const response = await this.http.post(`/${tokenId}`, eventBody);
+    return response.data;
+  }
 }
