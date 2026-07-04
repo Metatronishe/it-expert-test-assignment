@@ -29,4 +29,8 @@ export class WebhookSiteClient {
     const response = await this.http.post(`/${tokenId}`, eventBody);
     return response.data;
   }
+
+  buildPublishUrl(tokenId) {
+    return `${BASE_URL}/${tokenId}`;
+  }
 }
