@@ -12,10 +12,10 @@
   },
   "license": "ISC",
   "author": "Oleksandr Nepomniashchyi",
-  "type": "esm",
+  "type": "module",
   "main": "index.js",
   "scripts": {
-    "test": "test"
+    "test": "node --experimental-vm-modules node_modules/.bin/jest --runInBand"
   },
   "dependencies": {
     "@faker-js/faker": "^10.5.0",

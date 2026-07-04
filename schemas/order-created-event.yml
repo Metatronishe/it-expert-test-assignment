@@ -1,0 +1,98 @@
+type: object
+additionalProperties: false
+required:
+  - eventId
+  - eventType
+  - correlationId
+  - timestamp
+  - payload
+properties:
+  eventId:
+    type: string
+    pattern: '^evt-[0-9a-fA-F-]{36}$'
+  eventType:
+    type: string
+    enum:
+      - OrderCreated
+  correlationId:
+    type: string
+    format: uuid
+  timestamp:
+    type: string
+    format: date-time
+  payload:
+    type: object
+    additionalProperties: false
+    required:
+      - orderId
+      - customerId
+      - items
+      - totalAmount
+      - currency
+      - shippingAddress
+      - status
+    properties:
+      orderId:
+        type: string
+        pattern: '^ord-[0-9a-fA-F-]{36}$'
+      customerId:
+        type: string
+        pattern: '^cust-[0-9a-fA-F-]{36}$'
+      items:
+        type: array
+        minItems: 1
+        items:
+          type: object
+          additionalProperties: false
+          required:
+            - productId
+            - name
+            - quantity
+            - unitPrice
+          properties:
+            productId:
+              type: string
+              pattern: '^prod-[0-9a-fA-F-]{36}$'
+            name:
+              type: string
+              minLength: 1
+            quantity:
+              type: integer
+              minimum: 1
+            unitPrice:
+              type: number
+              minimum: 0
+      totalAmount:
+        type: number
+        minimum: 0
+      currency:
+        type: string
+        enum:
+          - USD
+          - EUR
+          - PLN
+      shippingAddress:
+        type: object
+        additionalProperties: false
+        required:
+          - country
+          - city
+          - postalCode
+          - street
+        properties:
+          country:
+            type: string
+            minLength: 2
+          city:
+            type: string
+            minLength: 1
+          postalCode:
+            type: string
+            minLength: 1
+          street:
+            type: string
+            minLength: 1
+      status:
+        type: string
+        enum:
+          - created
