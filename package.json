@@ -1,0 +1,30 @@
+{
+  "name": "it-expert-test-assignment",
+  "version": "1.0.0",
+  "description": "API test assignment",
+  "homepage": "https://github.com/Metatronishe/it-expert-test-assignment#readme",
+  "bugs": {
+    "url": "https://github.com/Metatronishe/it-expert-test-assignment/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Metatronishe/it-expert-test-assignment.git"
+  },
+  "license": "ISC",
+  "author": "Oleksandr Nepomniashchyi",
+  "type": "esm",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "dependencies": {
+    "@faker-js/faker": "^10.5.0",
+    "ajv": "^8.20.0",
+    "ajv-formats": "^3.0.1",
+    "axios": "^1.18.1",
+    "dotenv": "^17.4.2",
+    "jest": "^30.4.2",
+    "js-yaml": "^5.2.1",
+    "lodash": "^4.18.1"
+  }
+}
