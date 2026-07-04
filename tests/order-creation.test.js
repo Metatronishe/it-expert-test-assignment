@@ -2,6 +2,7 @@ import { WebhookSiteClient } from '../clients/webhook-site.js';
 import { EventPublisher } from '../services/event-publisher.js';
 import { EventReceiver } from '../services/event-reciever.js';
 import { buildOrderCreatedEvent } from '../fixtures/order-event-factory.js';
+import { validateAgainstSchemaFile } from '../utils/schema-validator.js';
 
 describe('Event Bus - OrderCreated publish & receive', () => {
   const tokenId = process.env.WEBHOOK_SITE_TOKEN_ID;
@@ -22,5 +23,13 @@ describe('Event Bus - OrderCreated publish & receive', () => {
     expect(received.correlationId).toBe(event.correlationId);
     expect(received.timestamp).toBe(event.timestamp);
     expect(received.payload).toEqual(event.payload);
+
+    const schemaResult = validateAgainstSchemaFile(
+      received,
+      new URL('../schemas/order-created-event.yml', import.meta.url)
+    );
+  
+    expect(schemaResult.errors).toEqual([]);
+    expect(schemaResult.valid).toBe(true);
   });
 });
